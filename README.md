@@ -1,1 +1,1 @@
-# Dashboard to analyze Data Analytic vacancies in the HeadHunter.com
+# Dashboard to analyze "Data Analyst" vacancies in the HeadHunter.com
