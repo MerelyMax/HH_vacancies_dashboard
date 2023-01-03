@@ -16,7 +16,8 @@ if __name__ == '__main__':
     age = st.slider('How old are you?', 0, 130, 50)
     st.write('I\'m' , age, 'years old')
 
-    appointment_time = st.slider('Schedule your appointment for:', 
-                                value = (time(7,30), time(12,45)))
-    st.write('Your appointment is scheduled for', appointment_time)
+    appointment = st.slider(
+        "Schedule your appointment:",
+        value=(time(11, 30), time(12, 45)))
+    st.write("You're scheduled for:", appointment)
 
