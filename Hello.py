@@ -9,8 +9,9 @@ if __name__ == '__main__':
         page_icon="ℹ️",
     )
 
-    st.write("""# \"Data analytic\" jobs👨‍💻 - Analysis
-             (Skills, salary, etc)
+    st.write("""
+             # \"Data analytic\" jobs👨‍💻 - Analysis
+             \n (Skills, salary, etc)
              """)
 
     st.write("#### Data provided from hh.ru - job search site")
