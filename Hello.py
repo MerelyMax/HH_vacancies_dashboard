@@ -10,7 +10,8 @@ if __name__ == '__main__':
     )
 
     st.write("""# \"Data analytic\" jobs👨‍💻 - Analysis
-             (Skills, salary, etc)""")
+             (Skills, salary, etc)
+             """)
 
     st.write("#### Data provided from hh.ru - job search site")
 
