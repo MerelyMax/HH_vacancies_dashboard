@@ -5,11 +5,13 @@ from datetime import time
 
 if __name__ == '__main__':
     st.set_page_config(
-        page_title="Hello",
-        page_icon="👋",
+        page_title="About",
+        page_icon="ℹ️",
     )
 
-    st.write("# Data analytic vacancies from hh.ru job search website")
+    st.write("# \"Data analytic\" jobs👨‍💻 - Analysis")
+    st.write("(Skills, salary, etc)")
+    st.write("### Data provided from hh.ru - job search site")
 
     #st.sidebar.success("Select a demo above.")
 
