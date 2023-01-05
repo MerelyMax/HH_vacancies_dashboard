@@ -10,8 +10,8 @@ if __name__ == '__main__':
     )
 
     st.write("# \"Data analytic\" jobs👨‍💻 - Analysis")
-    st.write("(Skills, salary, etc)")
-    st.write("### Data provided from hh.ru - job search site")
+    st.write("####(Skills, salary, etc)")
+    st.write("#### Data provided from hh.ru - job search site")
 
     #st.sidebar.success("Select a demo above.")
 
