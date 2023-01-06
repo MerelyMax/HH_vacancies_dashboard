@@ -16,11 +16,18 @@ if __name__ == '__main__':
              To discover all of the data, use pages on the sidebar 
              (on the left handside of the page).
              """)
-    html_string = "<h3 style='text-align: center;'> Data provided from hh.ru - job search website</h3>"
-    st.markdown("""<h3> 
-                Data provided from hh.ru - job search website 
-                </h3>""")
+    # html_string = "<h3 style='text-align: center;'> Data provided from hh.ru - job search website</h3>"
+    st.markdown("""
+                ### Data provided from hh.ru - job search website 
+                # """)
     
     st.markdown("""---""")
     
+    col1, col2 = st.columns(3)
+    
+    with col1:
+        st.write("Last updated:")
+    with col2:
+        st.write("Total processed entries:")
+
     #st.sidebar.success("Select a demo above.")
