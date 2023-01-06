@@ -11,12 +11,12 @@ if __name__ == '__main__':
 
     st.markdown("""
              # \"Data analyst\" jobs👨‍💻 - Analysis
-             \n This dashboard presents statistics about Data Analyst jobs: number of vacancies, 
-             skills required, salary and more. To discover all of the data use pages on the sidebar 
-             (on the left handside of the page)
+             \n This dashboard presents statistics about Data Analyst jobs: *number of vacancies*, 
+             *skills* required, *salary* and more. To discover all of the data, use pages 
+             on the sidebar (on the left handside of the page).
              """)
-
-    st.markdown("""<h3 style='text-align: center;'> 
+    html_string = "<h3 style='text-align: center'> Data provided from hh.ru - job search website</h3>"
+    st.markdown("""<h3 style='text-align: center'> 
                 Data provided from hh.ru - job search website 
                 </h3>""")
     
