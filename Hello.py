@@ -9,19 +9,17 @@ if __name__ == '__main__':
         page_icon="ℹ️",
     )
 
-    st.write("""
-             # \"Data analytic\" jobs👨‍💻 - Analysis
-             \n (Skills, salary, etc)
+    st.markdown("""
+             # \"Data analyst\" jobs👨‍💻 - Analysis
+             \n This dashboard presents statistics about Data Analyst jobs: number of vacancies, 
+             skills required, salary and more. To discover all of the data use pages in the sidebar
+             (👈 on the left handside of the page)
              """)
 
-    st.write("#### Data provided from hh.ru - job search site")
-
+    st.markdown("<h3 style='text-align: center;'> \
+                Data provided from hh.ru - job search website \
+              </h3>")
+    
+    st.markdown("""---""")
+    
     #st.sidebar.success("Select a demo above.")
-
-    st.markdown(
-    """
-    Streamlit is an open-source app framework built specifically for
-    Machine Learning and Data Science projects.
-    **👈 Select a demo from the sidebar**
-    """
-    )
