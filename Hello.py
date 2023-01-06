@@ -18,12 +18,12 @@ if __name__ == '__main__':
              """)
     # html_string = "<h3 style='text-align: center;'> Data provided from hh.ru - job search website</h3>"
     st.markdown("""
-                ### Data provided from hh.ru - job search website 
-                # """)
+                **Data provided from hh.ru - job search website** 
+                """)
     
     st.markdown("""---""")
     
-    col1, col2 = st.columns(3)
+    col1, col2 = st.columns(2)
     
     with col1:
         st.write("Last updated:")
