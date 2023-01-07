@@ -2,7 +2,7 @@ import streamlit as st
 import json
 import numpy as np
 import pandas as pd
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Vacancies overview", page_icon="📈")
 
