@@ -15,7 +15,7 @@ def extract_json_file(file_name):
     return json.loads('[' + f.read() + ']')
 
 # Extracting data
-data = extract_json_file('vacancies_data.json')
+data = extract_json_file('/vacancies_data.json')
 df_data = pd.DataFrame(data)
 
 # Constructing plot
