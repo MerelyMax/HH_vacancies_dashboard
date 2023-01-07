@@ -8,7 +8,6 @@ import matplotlib.pyplot as plt
 st.set_page_config(page_title="Vacancies overview", page_icon="📈")
 
 st.markdown("# Plotting Demo")
-st.sidebar.header("Plotting Demo")
 
 # Function to extract data fron .json file
 def extract_json_file(file_name):
@@ -22,8 +21,8 @@ area_jobs = df_data['area-name'].value_counts()
 
 # Adding interactive filter
 vac_num_choice = st.sidebar.slider(
-                    'Max vacansies number:', min_value=area_jobs.min(), 
-                                             max_value=area_jobs.max(), 
+                    'Max vacansies number:', min_value=int(area_jobs.min()), 
+                                             max_value=int(area_jobs.max()), 
                                              step=1, value=10)
 
 # Constructing plot

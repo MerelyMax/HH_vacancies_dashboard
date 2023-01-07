@@ -19,14 +19,12 @@ df_data = pd.DataFrame(data)
 
 # Adding interactive filters
 job_counts_by_area = df_data['area-name'].value_counts()
-city_choice = st.sidebar.multiselect(
+city_choice = st.sidebar.selectbox(
     'Choose city:', 
-    job_counts_by_area[job_counts_by_area.values > 10].keys(), 
-    default='Москва')
-currency_choice = st.sidebar.multiselect(
+    job_counts_by_area[job_counts_by_area.values > 10].keys())
+currency_choice = st.sidebar.selectbox(
     'Choose currency:', 
-    df_data['salary-currency'].dropna().unique(), 
-    default='RUR')
+    df_data['salary-currency'].dropna().unique())
 
 # Constructing plots
 fig, ax = plt.subplots(figsize=(15,5))
