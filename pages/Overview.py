@@ -1,5 +1,6 @@
 import streamlit as st
 import json
+import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -15,7 +16,7 @@ def extract_json_file(file_name):
     return json.loads('[' + f.read() + ']')
 
 # Extracting data
-data = extract_json_file('/vacancies_data.json')
+data = extract_json_file(os.path.dirname(__file__) + '/vacancies_data.json')
 df_data = pd.DataFrame(data)
 
 # Constructing plot
