@@ -44,6 +44,7 @@ ax.set_xlabel('Salary')
 ax.set_title('Salary for ' + city_choice + ' city')
 ax.legend()
 
+st.pyplot(fig)
 # Showing statistics
 salary_from_stats = df_data['salary-from'][(df_data['area-name'] == city_choice) & 
                         (df_data['salary-currency'] == currency_choice)].describe().to_frame()

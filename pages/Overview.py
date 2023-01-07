@@ -37,4 +37,5 @@ ax.tick_params(axis='y', labelsize=12)
 ax.set_xlabel('City', fontsize=14)
 ax.set_ylabel('Vacancies number', fontsize=13)
 ax.bar_label(hist1)
-plt.show()
+
+st.pyplot(fig)
