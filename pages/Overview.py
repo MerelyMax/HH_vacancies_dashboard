@@ -19,6 +19,12 @@ def extract_json_file(file_name):
 data = extract_json_file(os.path.dirname(__file__) + '/vacancies_data.json')
 df_data = pd.DataFrame(data)
 
+# Adding interactive filter
+vac_num_choice = st.sidebar.slider(
+                    'Max vacansies number:', min_value=area_jobs.min(), 
+                                             max_value=area_jobs.max(), 
+                                             step=1, value=10)
+
 # Constructing plot
 area_jobs = df_data['area-name'].value_counts()
 others = pd.Series(area_jobs[area_jobs.values < vac_num_choice].values.sum(),
@@ -33,9 +39,3 @@ ax.set_xlabel('City', fontsize=14)
 ax.set_ylabel('Vacancies number', fontsize=13)
 ax.bar_label(hist1)
 plt.show()
-
-# Adding interactive filter
-vac_num_choice = st.sidebar.slider(
-                    'Max vacansies number:', min_value=area_jobs.min(), 
-                                             max_value=area_jobs.max(), 
-                                             step=1, value=10)
