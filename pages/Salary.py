@@ -3,8 +3,7 @@ import json
 import os
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+import altair as alt
 
 st.set_page_config(page_title="Salaries analysis", page_icon="📈")
 
@@ -45,9 +44,14 @@ currency_choice = st.sidebar.selectbox(
 # ax.legend()
 
 # st.pyplot(fig)
-st.bar_chart(df_data['salary-from'][(df_data['area-name'] == city_choice) & 
-                                    (df_data['salary-currency'] == currency_choice)],
-             width = 100)
+# st.bar_chart(df_data['salary-from'][(df_data['area-name'] == city_choice) & 
+#                                     (df_data['salary-currency'] == currency_choice)])
+hist1 = alt.Chart(df_data['salary-from'][(df_data['area-name'] == city_choice) & 
+                                    (df_data['salary-currency'] == currency_choice)]).mark_bar(
+                                        ).encode(alt.X('Salary from', bin=True),
+                                                y='count()'
+                                                )
+st.altair_chart(hist1)
 
 st.bar_chart(df_data['salary-to'][(df_data['area-name'] == city_choice) & 
                                   (df_data['salary-currency'] == currency_choice)])
