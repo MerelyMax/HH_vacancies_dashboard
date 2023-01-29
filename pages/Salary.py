@@ -46,7 +46,8 @@ currency_choice = st.sidebar.selectbox(
 
 # st.pyplot(fig)
 st.bar_chart(df_data['salary-from'][(df_data['area-name'] == city_choice) & 
-                                    (df_data['salary-currency'] == currency_choice)])
+                                    (df_data['salary-currency'] == currency_choice)],
+             width = 10)
 
 st.bar_chart(df_data['salary-to'][(df_data['area-name'] == city_choice) & 
                                   (df_data['salary-currency'] == currency_choice)])
