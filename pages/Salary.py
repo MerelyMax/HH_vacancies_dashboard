@@ -26,35 +26,19 @@ currency_choice = st.sidebar.selectbox(
     df_data['salary-currency'].dropna().unique())
 
 # Constructing plots
-# fig, ax = plt.subplots(figsize=(15,5))
-# c1, c2, c3 = sns.color_palette("Set1", 3)
-# ax = sns.histplot(df_data['salary-from'][(df_data['area-name'] == city_choice) & 
-#                                    (df_data['salary-currency'] == currency_choice)],
-#             label = 'Salary From',
-#             color = c1,
-#             binwidth=30000)
-# ax = sns.histplot(df_data['salary-to'][(df_data['area-name'] == city_choice) & 
-#                                  (df_data['salary-currency'] == currency_choice)],
-#             label = 'Salary To',
-#             color = c2,
-#             binwidth=30000)
-
-# ax.set_xlabel('Salary')
-# ax.set_title('Salary for ' + city_choice + ' city')
-# ax.legend()
-
-# st.pyplot(fig)
-# st.bar_chart(df_data['salary-from'][(df_data['area-name'] == city_choice) & 
-#                                     (df_data['salary-currency'] == currency_choice)])
 hist1 = alt.Chart(df_data['salary-from'][(df_data['area-name'] == city_choice) & 
-                                    (df_data['salary-currency'] == currency_choice)].to_frame()).mark_bar(
-                                        ).encode(alt.X('salary-from:Q', bin = True),
+                                        (df_data['salary-currency'] == currency_choice)].to_frame()
+                  ).mark_bar().encode(alt.X('salary-from:Q', bin = True),
                                                 y = 'count()',
-                                                )
+                                    )
 st.altair_chart(hist1)
 
-st.bar_chart(df_data['salary-to'][(df_data['area-name'] == city_choice) & 
-                                  (df_data['salary-currency'] == currency_choice)])
+hist2 = alt.Chart(df_data['salary-to'][(df_data['area-name'] == city_choice) & 
+                                        (df_data['salary-currency'] == currency_choice)].to_frame()
+                  ).mark_bar().encode(alt.X('salary-to:Q', bin = True),
+                                            y = 'count()',
+                                    )
+st.altair_chart(hist2)
 # Showing statistics
 salary_from_stats = df_data['salary-from'][(df_data['area-name'] == city_choice) & 
                         (df_data['salary-currency'] == currency_choice)].describe().to_frame()
