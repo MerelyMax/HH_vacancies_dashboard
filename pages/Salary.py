@@ -49,7 +49,7 @@ currency_choice = st.sidebar.selectbox(
 hist1 = alt.Chart(df_data['salary-from'][(df_data['area-name'] == city_choice) & 
                                         (df_data['salary-currency'] == currency_choice).to_frame()]
                   ).mark_bar().encode(alt.X('salary-from:Q', bin = True),
-                                                y = 'count()'
+                                                y = 'count()',
                                                 )
 st.altair_chart(hist1)
 
