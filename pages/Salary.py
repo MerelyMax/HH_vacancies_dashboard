@@ -31,14 +31,14 @@ hist1 = alt.Chart(df_data['salary-from'][(df_data['area-name'] == city_choice) &
                   ).mark_bar().encode(alt.X('salary-from:Q', bin = True),
                                                 y = 'count()',
                                     )
-st.altair_chart(hist1)
+st.altair_chart(hist1, use_container_width = True)
 
 hist2 = alt.Chart(df_data['salary-to'][(df_data['area-name'] == city_choice) & 
                                         (df_data['salary-currency'] == currency_choice)].to_frame()
                   ).mark_bar().encode(alt.X('salary-to:Q', bin = True),
                                             y = 'count()',
                                     )
-st.altair_chart(hist2)
+st.altair_chart(hist2, use_container_width = True)
 # Showing statistics
 salary_from_stats = df_data['salary-from'][(df_data['area-name'] == city_choice) & 
                         (df_data['salary-currency'] == currency_choice)].describe().to_frame()
