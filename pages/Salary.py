@@ -62,8 +62,8 @@ data_for_boxplot = df_data[(df_data['published_at_datetime'] >= start_of_month) 
                            (df_data['published_at_datetime'] <= end_of_month) &
                            (df_data['salary-currency'] != 'USD')].dropna()
 
-boxplot1 = alt.Chart(data_for_boxplot).mark_boxplot().encode(x = alt.X('area-name:O', sort='-y'),
-                                                            y = alt.Y('salary-from:Q'),
+boxplot1 = alt.Chart(data_for_boxplot).mark_boxplot().encode(x = alt.X('salary-from:Q'),
+                                                            y = alt.Y('area-name:O', sort='-y'),
 
 )
 
