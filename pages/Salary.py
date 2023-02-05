@@ -43,7 +43,9 @@ end_of_month = start_of_month + relativedelta(months=1) - timedelta(days=1)
 data_for_hist1 = df_data[(df_data['published_at_datetime'] >= start_of_month) 
                         & (df_data['published_at_datetime'] <= end_of_month)
                         & (df_data['salary-currency'] != 'USD')].dropna(
-                            ).groupby('area-name', sort=False).median().sort_values(by = 'salary-from',
+                            ).groupby('area-name', 
+                                      sort=False,
+                                      as_index = False).median().sort_values(by = 'salary-from',
                                                                                     ascending = False)
                 
 hist1 = alt.Chart(data_for_hist1).mark_bar().encode(x = 'area-name:O',
