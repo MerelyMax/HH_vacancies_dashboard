@@ -87,7 +87,7 @@ data_for_barchart2 = df_data.groupby(df_data['published_at_datetime'].dt.month_n
 # Преобразуем Series в DataFrame где 2 столбца - (дата, медиана)
 data_for_barchart2 = pd.DataFrame(data_for_barchart2,
              index=data_for_barchart2.index).reset_index()
-
+# как осортировать помесячно?
 barchart2 = alt.Chart(data_for_barchart2).mark_bar(
                                         ).encode(x = alt.X('published_at_datetime:O'),
                                                 y = alt.Y('salary-from:Q', sort='-x')
