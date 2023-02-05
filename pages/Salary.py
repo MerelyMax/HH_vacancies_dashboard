@@ -89,8 +89,8 @@ data_for_barchart2 = pd.DataFrame(data_for_barchart2,
              index=data_for_barchart2.index).reset_index()
 
 barchart2 = alt.Chart(data_for_barchart2).mark_bar(
-                                        ).encode(x = alt.X('published_at_datetime:O', sort='-y'),
-                                                y = alt.Y('salary-from:Q')
+                                        ).encode(x = alt.X('published_at_datetime:O'),
+                                                y = alt.Y('salary-from:Q', sort='-x')
                                                     )
 st.altair_chart(barchart2, use_container_width = True)
 
