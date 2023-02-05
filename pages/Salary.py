@@ -64,7 +64,7 @@ data_for_boxplot = df_data[(df_data['published_at_datetime'] >= start_of_month) 
 
 boxplot1 = alt.Chart(data_for_boxplot).mark_boxplot(extent=0.5
                                                     ).encode(x = alt.X('salary-from:Q'),
-                                                            y = alt.Y('area-name:O', sort='-y'),
+                                                            y = alt.Y('area-name:O', sort='-x'),
 
 )
 
