@@ -61,9 +61,9 @@ hist2 = alt.Chart(df_data['salary-to'][(df_data['area-name'] == city_choice) &
 col1, col2 = st.columns(2)
     
 with col1:
-    st.write("Медианна, с которой начинается зарплата с " + 
+    st.write("Медианна, с которой начинается зарплата за теукщий месяц (с " + 
              start_of_month.strftime('%d.%m.%y') + " по " +
-             end_of_month.strftime('%d.%m.%y'))
+             end_of_month.strftime('%d.%m.%y') + ")")
     st.altair_chart(hist1, use_container_width = True)
 with col2:
     st.write("name 2")
