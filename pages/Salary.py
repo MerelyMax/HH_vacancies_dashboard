@@ -40,7 +40,7 @@ start_of_month = datetime(date.today().year, date.today().month, 1)
 end_of_month = start_of_month + relativedelta(months=1) - timedelta(days=1)
 # Фильтруем данные: выбираем строки между датами текущего месяца
 # Исключаем зар. плату в USD, а также None значения
-data_for_hist1 = df_data[(df_data['published_at_datetime'] >= start_of_month) 
+data_for_barchart1 = df_data[(df_data['published_at_datetime'] >= start_of_month) 
                         & (df_data['published_at_datetime'] <= end_of_month)
                         & (df_data['salary-currency'] != 'USD')].dropna(
                             ).groupby('area-name', 
@@ -48,7 +48,7 @@ data_for_hist1 = df_data[(df_data['published_at_datetime'] >= start_of_month)
                                       as_index = False).median().sort_values(by = 'salary-from',
                                                                                     ascending = False)
                 
-hist1 = alt.Chart(data_for_hist1).mark_bar().encode(x = alt.X('area-name:O', sort='-y'),
+barchart1 = alt.Chart(data_for_barchart1).mark_bar().encode(x = alt.X('area-name:O', sort='-y'),
                                                     y = alt.Y('salary-from:Q')
                                                     )
 
@@ -71,15 +71,28 @@ boxplot1 = alt.Chart(data_for_boxplot).mark_boxplot(extent=0.5
 col1, col2 = st.columns(2)
     
 with col1:
-    st.write("Медиана нижнего порога зарплаты за теукщий месяц (с " + 
+    st.write("Медиана нижнего порога зарплаты за текущий месяц (с " + 
              start_of_month.strftime('%d.%m.%y') + " по " +
              end_of_month.strftime('%d.%m.%y') + ")")
-    st.altair_chart(hist1, use_container_width = True)
+    st.altair_chart(barchart1, use_container_width = True)
 with col2:
-    st.write("Распределение нижнего порога зарплаты за теукщий месяц (с " + 
+    st.write("Распределение нижнего порога зарплаты за текущий месяц (с " + 
              start_of_month.strftime('%d.%m.%y') + " по " +
              end_of_month.strftime('%d.%m.%y') + ")")
     st.altair_chart(boxplot1, use_container_width = True)
+ 
+# Сгруппируем данные по месяцу и найдем медианное значение (среди всех городов)   
+data_for_barchart2 = df_data.groupby(df_data['published_at_datetime'].dt.month_name(),
+                as_index=True)['salary-from'].median()
+# Преобразуем Series в DataFrame где 2 столбца - (дата, медиана)
+data_for_barchart2 = pd.DataFrame(data_for_barchart2,
+             index=data_for_barchart2.index).reset_index()
+
+barchart2 = alt.Chart(data_for_barchart2).mark_bar(
+                                        ).encode(x = alt.X('published_at_datetime:O', sort='-y'),
+                                                y = alt.Y('salary-from:Q')
+                                                    )
+st.altair_chart(barchart2, use_container_width = True)
 
 # Showing statistics
 # salary_from_stats = df_data['salary-from'][(df_data['area-name'] == city_choice) & 
