@@ -55,31 +55,30 @@ hist2 = alt.Chart(df_data['salary-to'][(df_data['area-name'] == city_choice) &
                   ).mark_bar().encode(alt.X('salary-to:Q', bin = True),
                                             y = 'count()',
                                     )
-st.altair_chart(hist2, use_container_width = True)
 
 col1, col2 = st.columns(2)
     
 with col1:
-    st.write("Statistics for Salary-From")
+    st.write("name 1")
     st.altair_chart(hist1, use_container_width = True)
 with col2:
-    st.write("Statistics for Salary-To")
+    st.write("name 2")
     st.altair_chart(hist2, use_container_width = True)
 
 # Showing statistics
-salary_from_stats = df_data['salary-from'][(df_data['area-name'] == city_choice) & 
-                        (df_data['salary-currency'] == currency_choice)].describe().to_frame()
-salary_to_stats = df_data['salary-to'][(df_data['area-name'] == city_choice) & 
-                    (df_data['salary-currency'] == currency_choice)].describe().to_frame()
+# salary_from_stats = df_data['salary-from'][(df_data['area-name'] == city_choice) & 
+#                         (df_data['salary-currency'] == currency_choice)].describe().to_frame()
+# salary_to_stats = df_data['salary-to'][(df_data['area-name'] == city_choice) & 
+#                     (df_data['salary-currency'] == currency_choice)].describe().to_frame()
 
-col1, col2 = st.columns(2)
+# col1, col2 = st.columns(2)
     
-with col1:
-    st.write("Statistics for Salary-From")
-    st.dataframe(salary_from_stats)
-with col2:
-    st.write("Statistics for Salary-To")
-    st.dataframe(salary_to_stats)
+# with col1:
+#     st.write("Statistics for Salary-From")
+#     st.dataframe(salary_from_stats)
+# with col2:
+#     st.write("Statistics for Salary-To")
+#     st.dataframe(salary_to_stats)
 
 
 
