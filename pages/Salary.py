@@ -52,22 +52,33 @@ hist1 = alt.Chart(data_for_hist1).mark_bar().encode(x = alt.X('area-name:O', sor
                                                     y = alt.Y('salary-from:Q')
                                                     )
 
-hist2 = alt.Chart(df_data['salary-to'][(df_data['area-name'] == city_choice) & 
-                                        (df_data['salary-currency'] == currency_choice)].to_frame()
-                  ).mark_bar().encode(alt.X('salary-to:Q', bin = True),
-                                            y = 'count()',
-                                    )
+# ранее рисовал гистограмму
+# hist2 = alt.Chart(df_data['salary-to'][(df_data['area-name'] == city_choice) & 
+#                                         (df_data['salary-currency'] == currency_choice)].to_frame()
+#                   ).mark_bar().encode(alt.X('salary-to:Q', bin = True),
+#                                             y = 'count()',
+#                                     )
+data_for_boxplot = df_data[(df_data['published_at_datetime'] >= start_of_month) &
+                           (df_data['published_at_datetime'] <= end_of_month) &
+                           (df_data['salary-currency'] != 'USD')].dropna()
+
+boxplot1 = alt.Chart(data_for_boxplot).mark_boxplot().encode(x = alt.X('area-name:O', sort='-y'),
+                                                            y = alt.Y('salary-from:Q'),
+
+)
 
 col1, col2 = st.columns(2)
     
 with col1:
-    st.write("Медианна, с которой начинается зарплата за теукщий месяц (с " + 
+    st.write("Медиана нижнего порога зарплаты за теукщий месяц (с " + 
              start_of_month.strftime('%d.%m.%y') + " по " +
              end_of_month.strftime('%d.%m.%y') + ")")
     st.altair_chart(hist1, use_container_width = True)
 with col2:
-    st.write("name 2")
-    st.altair_chart(hist2, use_container_width = True)
+    st.write("Распределение нижнего порога зарплаты за теукщий месяц (с " + 
+             start_of_month.strftime('%d.%m.%y') + " по " +
+             end_of_month.strftime('%d.%m.%y') + ")")
+    st.altair_chart(boxplot1, use_container_width = True)
 
 # Showing statistics
 # salary_from_stats = df_data['salary-from'][(df_data['area-name'] == city_choice) & 
