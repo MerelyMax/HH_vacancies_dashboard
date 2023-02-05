@@ -46,8 +46,8 @@ data_for_hist1 = df_data[(df_data['published_at_datetime'] >= start_of_month)
                             ).groupby('area-name', sort=False).median().sort_values(by = 'salary-from',
                                                                                     ascending = False)
                 
-hist1 = alt.Chart(data_for_hist1).mark_bar().encode(x = 'area-name',
-                                                    y = 'salary-from',
+hist1 = alt.Chart(data_for_hist1).mark_bar().encode(x = 'area-name:O',
+                                                    y = 'salary-from:Q',
                                                     )
 
 hist2 = alt.Chart(df_data['salary-to'][(df_data['area-name'] == city_choice) & 
