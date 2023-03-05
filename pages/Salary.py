@@ -89,13 +89,19 @@ data_for_barchart2 = df_data.sort_values(by='published_at_datetime').groupby(
 # Преобразуем Series в DataFrame где 2 столбца - (дата, медиана)
 data_for_barchart2 = pd.DataFrame(data_for_barchart2,
                                   index=data_for_barchart2.index).reset_index()
-# как осортировать помесячно?
+
 barchart2 = alt.Chart(data_for_barchart2).mark_bar(
                                         ).encode(x = alt.X('published_at_datetime:O', sort=None),
                                                  y = alt.Y('salary-from:Q')
                                                     )
-st.altair_chart(barchart2, use_container_width = True)
+text_for_barchart2 = barchart2.mark_text(
+    align='left',
+    baseline='middle',
+    dx=3  # Nudges text to right so it doesn't appear on top of the bar
+).encode(
+    text='salary-from:Q')
 
+st.altair_chart(barchart2 + text_for_barchart2, use_container_width = True)
 # Showing statistics
 # salary_from_stats = df_data['salary-from'][(df_data['area-name'] == city_choice) & 
 #                         (df_data['salary-currency'] == currency_choice)].describe().to_frame()
