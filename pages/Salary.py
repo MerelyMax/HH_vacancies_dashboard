@@ -46,18 +46,18 @@ data_for_barchart1 = df_data[(df_data['published_at_datetime'] >= start_of_month
                             ).groupby('area-name', 
                                       sort=False,
                                       as_index = False).median().sort_values(by = 'salary-from',
-                                                                                    ascending = False)
-  # Добавим подписи столбцам
+                                                                                    ascending = False)           
+barchart1 = alt.Chart(data_for_barchart1).mark_bar().encode(x = alt.X('area-name:O'),
+                                                    y = alt.Y('salary-from:Q',
+                                                              sort=alt.EncodingSortField('value', op='min', order='descending'))
+                                                    )
+# Добавим подписи столбцам
 text_for_barchart1 = barchart1.mark_text(
     align='center',
     baseline='middle',
     dy=-10  # Nudges text to right so it doesn't appear on top of the bar
 ).encode(
-    text='salary-from:Q')              
-barchart1 = alt.Chart(data_for_barchart1).mark_bar().encode(x = alt.X('area-name:O', sort='-y'),
-                                                    y = alt.Y('salary-from:Q')
-                                                    )
-
+    text='salary-from:Q')   
 # ранее рисовал гистограмму
 # hist2 = alt.Chart(df_data['salary-to'][(df_data['area-name'] == city_choice) & 
 #                                         (df_data['salary-currency'] == currency_choice)].to_frame()
