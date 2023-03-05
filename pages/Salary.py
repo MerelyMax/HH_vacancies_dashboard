@@ -51,7 +51,13 @@ data_for_barchart1 = df_data[(df_data['published_at_datetime'] >= start_of_month
 barchart1 = alt.Chart(data_for_barchart1).mark_bar().encode(x = alt.X('area-name:O', sort='-y'),
                                                     y = alt.Y('salary-from:Q')
                                                     )
-
+# Добавим подписи столбцам
+text_for_barchart1 = barchart1.mark_text(
+    align='center',
+    baseline='middle',
+    dy=-5  # Nudges text to right so it doesn't appear on top of the bar
+).encode(
+    text='salary-from:Q')
 # ранее рисовал гистограмму
 # hist2 = alt.Chart(df_data['salary-to'][(df_data['area-name'] == city_choice) & 
 #                                         (df_data['salary-currency'] == currency_choice)].to_frame()
@@ -74,7 +80,7 @@ with col1:
     st.write("Медиана нижнего порога зарплаты за текущий месяц (с " + 
              start_of_month.strftime('%d.%m.%y') + " по " +
              date.today().strftime('%d.%m.%y') + ")")
-    st.altair_chart(barchart1, use_container_width = True)
+    st.altair_chart(barchart1 + text_for_barchart1, use_container_width = True)
 with col2:
     st.write("Распределение нижнего порога зарплаты за текущий месяц (с " + 
              start_of_month.strftime('%d.%m.%y') + " по " +
@@ -89,11 +95,11 @@ data_for_barchart2 = df_data.sort_values(by='published_at_datetime').groupby(
 # Преобразуем Series в DataFrame где 2 столбца - (дата, медиана)
 data_for_barchart2 = pd.DataFrame(data_for_barchart2,
                                   index=data_for_barchart2.index).reset_index()
-
 barchart2 = alt.Chart(data_for_barchart2).mark_bar(
                                         ).encode(x = alt.X('published_at_datetime:O', sort=None),
                                                  y = alt.Y('salary-from:Q')
                                                     )
+# Добавим подписи столбцам
 text_for_barchart2 = barchart2.mark_text(
     align='center',
     baseline='middle',
