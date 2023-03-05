@@ -73,24 +73,24 @@ col1, col2 = st.columns(2)
 with col1:
     st.write("Медиана нижнего порога зарплаты за текущий месяц (с " + 
              start_of_month.strftime('%d.%m.%y') + " по " +
-             end_of_month.strftime('%d.%m.%y') + ")")
+             date.today().strftime('%d.%m.%y') + ")")
     st.altair_chart(barchart1, use_container_width = True)
 with col2:
     st.write("Распределение нижнего порога зарплаты за текущий месяц (с " + 
              start_of_month.strftime('%d.%m.%y') + " по " +
-             end_of_month.strftime('%d.%m.%y') + ")")
+             date.today().strftime('%d.%m.%y') + ")")
     st.altair_chart(boxplot1, use_container_width = True)
  
 # Сгруппируем данные по месяцу и найдем медианное значение (среди всех городов)   
-data_for_barchart2 = df_data.groupby(df_data['published_at_datetime'].dt.month_name(),
-                as_index=True)['salary-from'].median()
+data_for_barchart2 = df_data.sort_values(by='published_at_datetime').groupby(df_data['published_at_datetime'].dt.month_name(),
+                                     as_index=True)['salary-from'].median()
 # Преобразуем Series в DataFrame где 2 столбца - (дата, медиана)
 data_for_barchart2 = pd.DataFrame(data_for_barchart2,
-             index=data_for_barchart2.index).reset_index()
+                                  index=data_for_barchart2.index).reset_index()
 # как осортировать помесячно?
 barchart2 = alt.Chart(data_for_barchart2).mark_bar(
                                         ).encode(x = alt.X('published_at_datetime:O'),
-                                                y = alt.Y('salary-from:Q', sort='-x')
+                                                 y = alt.Y('salary-from:Q', sort='-x')
                                                     )
 st.altair_chart(barchart2, use_container_width = True)
 
