@@ -57,7 +57,7 @@ barchart1 = alt.Chart(data_for_barchart1).mark_bar().encode(x = alt.X('area-name
 text_for_barchart1 = barchart1.mark_text(
     align='center',
     baseline='middle',
-    dy=-10  # Nudges text to right so it doesn't appear on top of the bar
+    dy=-7  # Nudges text to right so it doesn't appear on top of the bar
 ).encode(
     text='salary-from:Q')   
 # ранее рисовал гистограмму
