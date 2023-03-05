@@ -97,7 +97,7 @@ barchart2 = alt.Chart(data_for_barchart2).mark_bar(
 text_for_barchart2 = barchart2.mark_text(
     align='center',
     baseline='middle',
-    dy=3  # Nudges text to right so it doesn't appear on top of the bar
+    dy=10  # Nudges text to right so it doesn't appear on top of the bar
 ).encode(
     text='salary-from:Q')
 
