@@ -83,7 +83,7 @@ with col2:
  
 # Сгруппируем данные по месяцу и найдем медианное значение (среди всех городов)   
 data_for_barchart2 = df_data.sort_values(by='published_at_datetime').groupby(df_data['published_at_datetime'].dt.month_name(),
-                                     as_index=True)['salary-from'].median()
+                                     as_index=True, sort=False)['salary-from'].median()
 # Преобразуем Series в DataFrame где 2 столбца - (дата, медиана)
 data_for_barchart2 = pd.DataFrame(data_for_barchart2,
                                   index=data_for_barchart2.index).reset_index()
