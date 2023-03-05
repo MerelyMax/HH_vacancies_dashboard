@@ -49,7 +49,7 @@ data_for_barchart1 = df_data[(df_data['published_at_datetime'] >= start_of_month
                                                                                     ascending = False)           
 barchart1 = alt.Chart(data_for_barchart1).mark_bar().encode(x = alt.X('area-name:O'),
                                                     y = alt.Y('salary-from:Q',
-                                                              sort=alt.EncodingSortField('value', op='min', order='descending'))
+                                                              sort=alt.EncodingSortField('salary-from', op='min', order='descending'))
                                                     )
 # Добавим подписи столбцам
 text_for_barchart1 = barchart1.mark_text(
