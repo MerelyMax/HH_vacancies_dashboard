@@ -47,7 +47,7 @@ end_of_month = datetime(2023, 2, 28)
 # Исключаем з/п в USD, а также None значения
 data_for_barchart1 = df_data[(df_data['published_at_datetime'] >= start_of_month) 
                         & (df_data['published_at_datetime'] <= end_of_month)
-                        & (df_data['salary-currency'] != 'USD')].dropna(
+                        & (df_data['salary-currency'] != 'USD')][['area-name', 'salary-from', 'salary-to']].dropna(
                             ).groupby(['area-name'], 
                                       sort=False,
                                       as_index = False).median().sort_values(by = 'salary-from',
