@@ -11,7 +11,7 @@ if __name__ == '__main__':
 
     st.markdown("""
              # Data analyst jobs👨‍💻
-             # \n Analysis
+             \n Analysis
              \n This dashboard presents **statistics about Data Analyst jobs**: 
              **number of vacancies**, **skills** required, **salary** and more. 
              To discover all of the data, use pages on the sidebar 
