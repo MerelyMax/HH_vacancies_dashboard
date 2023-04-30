@@ -48,16 +48,18 @@ end_of_month = datetime(2023, 2, 28)
 data_for_barchart1 = df_data[(df_data['published_at_datetime'] >= start_of_month) 
                         & (df_data['published_at_datetime'] <= end_of_month)
                         & (df_data['salary-currency'] != 'USD')].dropna(
-                            ).groupby('area-name', 
+                            ).groupby(['area-name'], 
                                       sort=False,
                                       as_index = False).median().sort_values(by = 'salary-from',
                                                                                     ascending = False)           
-barchart1 = alt.Chart(data_for_barchart1).mark_bar().encode(x = alt.X('area-name:O',
-                                                                      sort=alt.EncodingSortField('salary-from', 
-                                                                                                 op='min', 
-                                                                                                 order='descending')),
-                                                    y = alt.Y('salary-from:Q')
-                                                    )
+barchart1 = alt.Chart(
+        data_for_barchart1).mark_bar().encode(
+        x = alt.X('area-name:O',
+                 sort=alt.EncodingSortField('salary-from', 
+                 op='min', 
+                 order='descending')),
+        y = alt.Y('salary-from:Q')
+                        )
 # Добавим подписи столбцам
 text_for_barchart1 = barchart1.mark_text(
     align='center',
