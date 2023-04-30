@@ -20,15 +20,22 @@ df_data = pd.DataFrame(data)
 area_jobs = df_data['area-name'].value_counts()
 
 # Adding interactive filter
-vac_num_choice = st.sidebar.slider(
-                    'Max vacansies number:', min_value=int(area_jobs.min()), 
-                                             max_value=int(area_jobs.max()), 
-                                             step=1, value=10)
-
+num_of_cities_option = st.sidebar.selectbox(
+                    'Выберите количество городов для отображения:', 
+                    ('Топ 5', 'Топ 10', 'Топ 20', 'Показать все'))
+num_of_cities_dict = {
+    'Топ 5' : 5,
+    'Топ 10' : 10,
+    'Топ 20' : 20,
+    'Показать все' : area_jobs.count(),
+}
 # Constructing plot
-others = pd.Series(area_jobs[area_jobs.values < vac_num_choice].values.sum(),
-                   index = ['Другие'])
-area_jobs = pd.concat([area_jobs[area_jobs.values > vac_num_choice],
+# Add 'Others' category to a plot for numeric num_of_cities_option
+if (num_of_cities_option != 'Показать все'):
+    others = pd.Series(
+        area_jobs[num_of_cities_dict[num_of_cities_option]:].values.sum(),
+        index = ['Другие'])
+    area_jobs = pd.concat([area_jobs[:num_of_cities_dict[num_of_cities_option]],
                                  others])
 
 fig, ax = plt.subplots(figsize=(15,5))
