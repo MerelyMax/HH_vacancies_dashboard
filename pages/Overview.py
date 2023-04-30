@@ -28,7 +28,8 @@ vac_num_choice = st.sidebar.slider(
 # Constructing plot
 others = pd.Series(area_jobs[area_jobs.values < vac_num_choice].values.sum(),
                    index = ['Другие'])
-area_jobs = area_jobs[area_jobs.values > vac_num_choice].append(others)
+area_jobs = pd.concat([area_jobs[area_jobs.values > vac_num_choice],
+                                 others])
 
 fig, ax = plt.subplots(figsize=(15,5))
 hist1 = ax.bar(area_jobs.index, area_jobs.values)
