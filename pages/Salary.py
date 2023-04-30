@@ -35,11 +35,16 @@ currency_choice = st.sidebar.selectbox(
 # Constructing plots
 # Медиана по городам в разрезе месяца
 # Определим дату начала текущего месяца
-start_of_month = datetime(date.today().year, date.today().month, 1)
+# (отключим в целях тестирования)
+# start_of_month = datetime(date.today().year, date.today().month, 1)
+start_of_month = datetime(2023, 2, 1)
+
 # Определим дату окончания текущего месяца
-end_of_month = start_of_month + relativedelta(months=1) - timedelta(days=1)
+# (отключим в целях тестирования)
+# end_of_month = start_of_month + relativedelta(months=1) - timedelta(days=1)
+start_of_month = datetime(2023, 2, 28)
 # Фильтруем данные: выбираем строки между датами текущего месяца
-# Исключаем зар. плату в USD, а также None значения
+# Исключаем з/п в USD, а также None значения
 data_for_barchart1 = df_data[(df_data['published_at_datetime'] >= start_of_month) 
                         & (df_data['published_at_datetime'] <= end_of_month)
                         & (df_data['salary-currency'] != 'USD')].dropna(
