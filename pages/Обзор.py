@@ -39,6 +39,7 @@ if (num_of_cities_option != 'Показать все'):
     area_jobs = pd.concat([area_jobs[:num_of_cities_dict[num_of_cities_option]],
                                  others])
 
+# Начал переход с matplotlib на altair. Данные - Series. Необходим dataframe?
 barchart = alt.Chart(area_jobs).mark_bar(
                                         ).encode(x = alt.X('index:O', sort=None),
                                                  y = alt.Y('values:Q')
