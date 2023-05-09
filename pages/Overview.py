@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Vacancies overview", page_icon="📈")
 
-st.markdown("# Количество вакансий \'аналитик данных\' по городам России")
+st.markdown("# Количество вакансий *аналитик данных* по городам России")
 
 # Function to extract data fron .json file
 def extract_json_file(file_name):
