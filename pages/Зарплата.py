@@ -8,7 +8,7 @@ from datetime import datetime, timedelta, date
 from dateutil.relativedelta import relativedelta
 import dateutil.parser
 
-st.set_page_config(page_title="Salaries analysis", page_icon="📈")
+st.set_page_config(page_title="Зарплата", page_icon="📈")
 
 # Function to extract data fron .json file
 def extract_json_file(file_name):

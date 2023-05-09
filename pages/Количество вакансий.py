@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-st.set_page_config(page_title="Vacancies overview", page_icon="📈")
+st.set_page_config(page_title="Количество вакансий", page_icon="📈")
 
 st.markdown("# Количество вакансий *аналитик данных* по городам России")
 
