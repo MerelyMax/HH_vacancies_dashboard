@@ -4,6 +4,7 @@ import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import altair as alt
 
 st.set_page_config(page_title="Обзор", page_icon="📈")
 
@@ -38,12 +39,27 @@ if (num_of_cities_option != 'Показать все'):
     area_jobs = pd.concat([area_jobs[:num_of_cities_dict[num_of_cities_option]],
                                  others])
 
-fig, ax = plt.subplots(figsize=(15,5))
-hist1 = ax.bar(area_jobs.index, area_jobs.values)
-ax.tick_params(axis='x', rotation=90, labelsize=12)
-ax.tick_params(axis='y', labelsize=12)
-ax.set_xlabel('City', fontsize=14)
-ax.set_ylabel('Vacancies number', fontsize=13)
-ax.bar_label(hist1)
+barchart = alt.Chart(area_jobs).mark_bar(
+                                        ).encode(x = alt.X('index:O', sort=None),
+                                                 y = alt.Y('values:Q')
+                                                    )
+# Добавим подписи столбцам
+text_for_barchart = barchart.mark_text(
+    align='center',
+    baseline='middle',
+    dy=-10  # Nudges text to right so it doesn't appear on top of the bar
+).encode(
+    text='values:Q')
 
-st.pyplot(fig)
+st.write("Количество вакансий по городам России")
+st.altair_chart(barchart + text_for_barchart, use_container_width = True)
+
+# fig, ax = plt.subplots(figsize=(15,5))
+# hist1 = ax.bar(area_jobs.index, area_jobs.values)
+# ax.tick_params(axis='x', rotation=90, labelsize=12)
+# ax.tick_params(axis='y', labelsize=12)
+# ax.set_xlabel('City', fontsize=14)
+# ax.set_ylabel('Vacancies number', fontsize=13)
+# ax.bar_label(hist1)
+
+# st.pyplot(fig)
