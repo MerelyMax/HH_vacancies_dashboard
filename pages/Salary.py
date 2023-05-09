@@ -116,6 +116,7 @@ text_for_barchart2 = barchart2.mark_text(
 ).encode(
     text='salary-from:Q')
 
+st.write("Медианное значение зарплаты по месяцам (все города)")
 st.altair_chart(barchart2 + text_for_barchart2, use_container_width = True)
 # Showing statistics
 # salary_from_stats = df_data['salary-from'][(df_data['area-name'] == city_choice) & 
